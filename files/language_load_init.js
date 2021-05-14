@@ -9,7 +9,7 @@ module.exports = {
                 fs.readdir(languages + lang + "/", (err, lang_files) => {
                     lang_files.forEach(file => {
                         let file_name = file.split(".")[0].toUpperCase()
-                        let file_content = require("." + languages + lang + "/" + file)
+                        let file_content = require(languages + lang + "/" + file)
                         per_cmd_map.set(file_name, file_content)
                     })
                     require("./language_load_map").languages.set(lang, per_cmd_map)
