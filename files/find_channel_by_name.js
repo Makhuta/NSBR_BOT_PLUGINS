@@ -1,5 +1,5 @@
-module.exports = async(zprava, msg, roomname) => {
-    let guild = msg.guild
+module.exports = async(zprava, msg1, roomname) => {
+    let guild = msg1.guild
     let message
 
 
