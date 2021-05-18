@@ -5,4 +5,5 @@ module.exports = {
     language_load_init(hodnoty) { return require("./files/language_load_init").init(hodnoty ? hodnoty.main_dir : null) },
     language_load_map: require("./files/language_load_map").languages,
     roles_init(hodnoty) { return require("./files/roles_init")(hodnoty.bot, hodnoty.channel) },
+    find_channel_by_name(hodnoty) { return require("./files/roles_init")(hodnoty.zprava, hodnoty.message) },
 }
