@@ -20,13 +20,13 @@ module.exports = (bot, guild) => {
                 //console.log(description_array_per_msg[i])
                 let splitted_desc = description_array_per_msg[i].split(" - ")
                 let emoji_name = splitted_desc[0]
-                console.log(splitted_desc[0])
+                    //console.log(splitted_desc[0])
                 if (splitted_desc[0].indexOf("<:") == 0) {
                     let indexes = require("./index_of_all")(emoji_name, ":")
                     emoji_name = emoji_name.slice(indexes[0] + 1, indexes[1])
-                    console.log(indexes)
+                        //console.log(indexes)
                 }
-                console.log(emoji_name)
+                //console.log(emoji_name)
                 reaction_array_list.push({ emoji: guild.emojis.cache.find(emoji => emoji.name == emoji_name), role: splitted_desc[1] })
             }
 
@@ -39,8 +39,16 @@ module.exports = (bot, guild) => {
                     users = users.filter(user => !user.bot)
                     all_reactions.push({ reaction, users })
 
-                    let role = reaction_array_list.find(one_reaction => one_reaction.emoji == reaction)
-                    console.log(reaction_array_list)
+                    let role = reaction_array_list.find(one_reaction => one_reaction.emoji == reaction._emoji).role
+                    role = require("nsbr_bot_plugins").find_role({ role, guild })
+                    if (!role) return
+                    for(var user of users) {
+                        user = user[1]
+                        user = guild.members.cache.find(usr => usr.user.username == user.username)
+                        require("./add_role_to_user")({ user, role, bot })
+                        console.log(user)
+                    }
+                    //console.log(role)
                 })
             }
             //console.log(all_reactions)
