@@ -8,7 +8,7 @@ module.exports = (hodnoty) => { //user, role, role_name, message, bot
 
     if (!user) return console.log("User is not defined.");
     if (role) {
-        user.roles.add(role).catch(console.error);
+        user.roles.remove(role).catch(console.error);
     } else if (role_name) {
         if (bot) {
             let guild = bot.guilds.cache.first();
