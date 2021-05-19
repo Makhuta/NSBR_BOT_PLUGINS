@@ -1,8 +1,22 @@
 module.exports = (bot, guild) => {
-    let ar_channel = message.channel.guild.channels.cache.find(channel => channel.name == "autorole")
+    let ar_channel = guild.channels.cache.find(channel => channel.name == "autorole")
 
     ar_channel.messages.fetch({ limit: 100 }).then(async messages => {
         console.log("Počet zpráv: " + messages.size)
+
+        let reaction_array_list = []
+        for (var per_message of messages) {
+            per_message = per_message[1]
+                //console.log(per_message)
+            let description_array_per_msg = per_message.embeds[0].description.split("\n")
+
+            for (let i = 0; i < description_array_per_msg.length; i++) {
+                //console.log(description_array_per_msg[i])
+                let splitted_desc = description_array_per_msg[i].split(" - ")
+                reaction_array_list.push({ emoji: splitted_desc[0], role: splitted_desc[1] })
+            }
+        }
+        console.log(reaction_array_list)
     })
 
 
