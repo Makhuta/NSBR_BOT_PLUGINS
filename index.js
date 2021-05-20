@@ -9,4 +9,5 @@ module.exports = {
     find_role(hodnoty) { return require("./files/find_role")(hodnoty.role, hodnoty.message, hodnoty.guild) },
     add_role_to_user(hodnoty) { return require("./files/add_role_to_user")(hodnoty) },
     remove_role_from_user(hodnoty) { return require("./files/remove_role_from_user")(hodnoty) },
+    index_of_all(hodnoty) { return require("./files/index_of_all")(hodnoty.value, hodnoty.index) },
 }
